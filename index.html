@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Custom Directives</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  </head>
+  <body ng-app="custom">
+    <main ng-controller="CountriesCtrl">
+      <table>
+        <thead>
+          <tr>
+            <th>Upvote</th>
+            <th>Total</th>
+            <th>Name</th>
+            <th>Population</th>
+            <th>Capital City</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="country in countries" country-row
+            country="country"
+            do-something="doSomething(country.name)"
+            text-variable="{{ country.name }}">
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <country-block ng-repeat="country in countries" country="country">
+        </country-block>
+      </div>
+    </main>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>

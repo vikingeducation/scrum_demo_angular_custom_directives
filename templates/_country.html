@@ -1,0 +1,11 @@
+<hr>
+<h3>{{ country.name }}</h3>
+
+<p>
+  Upvotes: ({{ country.upvotes }}) <upvote-button subject='country'></upvote-button>
+</p>
+
+<ul>
+  <li>Population: {{ country.population | number }}</li>
+  <li>Capital: {{ country.capital }}</li>
+</ul>
