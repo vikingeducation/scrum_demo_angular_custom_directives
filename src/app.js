@@ -1,7 +1,25 @@
 var app = angular.module("custom", []);
 
-app.controller("CountriesCtrl", ["$scope", function($scope){
-  $scope.countries = [
+app.controller("CountriesCtrl", ["$scope", "Country", function($scope, Country){
+  $scope.countries = Country.list();
+  $scope.newCountry = {};
+
+  $scope.createCountry = function(){
+    var country = {
+      name: $scope.newCountry.name,
+      population: $scope.newCountry.population
+    };
+    Country.create(country);
+    $scope.newCountry.name = "";
+  };
+
+  $scope.doSomething = function(countryName){
+    console.log("Hello from " + countryName + "!");
+  };
+}]);
+
+app.factory("Country", [function(){
+  var _countries = [
     { name: "Azerbaijan", population: 9417000, capital: "Baku", upvotes: 0 },
     { name: "Belgium", population: 11250585, capital: "Bruxelles", upvotes: 0 },
     { name: "Cameroon", population: 22534532, capital: "Yaounde", upvotes: 0 },
@@ -10,8 +28,12 @@ app.controller("CountriesCtrl", ["$scope", function($scope){
     { name: "Vatican City", population: 451, capital: "Vatican City", upvotes: 0 },
   ];
 
-  $scope.doSomething = function(countryName){
-    console.log("Hello from " + countryName + "!");
+  return {
+    list: function(){ return _countries; },
+    create: function(country){
+      country.upvotes = 0;
+      _countries.push(country);
+    }
   };
 }]);
 

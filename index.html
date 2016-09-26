@@ -7,6 +7,15 @@
   </head>
   <body ng-app="custom">
     <main ng-controller="CountriesCtrl">
+      <form ng-submit="createCountry()">
+        <label>Name</label>
+        <input ng-model="newCountry.name">
+        <label>Population</label>
+        <input ng-model="newCountry.population">
+
+        <input type="submit">
+      </form>
+
       <table>
         <thead>
           <tr>
