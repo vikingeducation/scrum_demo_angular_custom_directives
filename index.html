@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="custom" ng-controller="CountriesCtrl">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Angular Custom Directives</title>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   </head>
-  <body ng-app="custom">
-    <main ng-controller="CountriesCtrl">
+  <body>
+    <main>
       <form ng-submit="createCountry()">
         <label>Name</label>
         <input ng-model="newCountry.name">
         <label>Population</label>
         <input ng-model="newCountry.population">
+        <label>Capital</label>
+        <input ng-model="newCountry.capital">
 
         <input type="submit">
       </form>
@@ -28,20 +37,41 @@
         </thead>
 
         <tbody>
-          <tr ng-repeat="country in countries" country-row
+          <tr ng-repeat="country in countries"
+            country-row
             country="country"
             do-something="doSomething(country.name)"
-            text-variable="{{ country.name }}">
+            text-variable="{{ country.name }}"
+            ng-attr-data-country-id="{{ country.id }}">
           </tr>
         </tbody>
       </table>
 
       <div>
-        <country-block ng-repeat="country in countries" country="country">
+        <country-block ng-repeat="country in countries"
+          country="country"
+          ng-attr-data-country-id="{{ country.id }}">
         </country-block>
       </div>
     </main>
 
-    <script src="src/app.js"></script>
+    <!-- App -->
+    <script src="/src/app.js"></script>
+
+    <!-- Services -->
+    <script src="/src/services/country_service.js"></script>
+
+    <!-- Directives -->
+    <script src="/src/directives/country_block_directive.js"></script>
+    <script src="/src/directives/country_row_directive.js"></script>
+    <script src="/src/directives/upvote_button_directive.js"></script>
+
+    <!-- Controllers -->
+    <script src="/src/controllers/countries_ctrl.js"></script>
   </body>
 </html>
+
+
+
+
+
